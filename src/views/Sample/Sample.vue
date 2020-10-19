@@ -1,12 +1,18 @@
 <template>
-  <div>{{ count }}</div>
-  <button @click="doSomething">doSomething</button>
+<div>{{ count }}</div>
+<div>{{ anotherCount }}</div>
+<button @click="doSomething">doSomething</button>
 </template>
 
 <script>
 export default {
-  setup() {
+  setup(props, context) {
     return {};
+  },
+  data() {
+    return {
+      anotherCount: this.$store.state.count,
+    };
   },
   computed: {
     count() {
@@ -16,6 +22,7 @@ export default {
   methods: {
     doSomething() {
       this.$store.commit('increment');
+      this.anotherCount++;
     },
   },
 };
